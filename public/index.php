@@ -8,6 +8,7 @@ use minichan\cache;
 require __DIR__ . '/bootstrap.php';
 
 require __ROOT__ . '/php/cache/cache.php';
+require __ROOT__ . '/php/db/db.php';
 require __ROOT__ . '/php/http/router.php';
 
 $cache = new cache\FileCache('main');
@@ -34,7 +35,6 @@ $router->add_route(HTTP_GET, '/foo/bar', function ($vars) {
 });
 
 $router->add_route(HTTP_GET, '/cache/:key/:val/set', function ($vars) use (&$cache) {
-
 	$val = $cache->get($vars[':key']);
 	if ($val != null) {
 		echo "returned from cache: " . $vars[':key'] . '/' . $val;
