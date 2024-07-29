@@ -3,12 +3,14 @@
 namespace minichan;
 
 use minichan\http;
+use minichan\html;
 use minichan\cache;
 use minichan\db;
 
 require __DIR__ . '/bootstrap.php';
 
 require __ROOT__ . '/php/http/router.php';
+require __ROOT__ . '/php/html/renderer.php';
 require __ROOT__ . '/php/cache/cache.php';
 require __ROOT__ . '/php/db/db.php';
 
@@ -24,18 +26,26 @@ $router = new http\Router();
 // });
 
 $router->add_route(HTTP_GET, '/', function ($vars) {
-	$dbc = new db\Connection('127.0.0.1', 'minichan_db', 'minichan_db_user', 'minichan_db_pass');
+	$foobar = 'different scope';
+	$template = new html\Renderer(__ROOT__ . '/templates', [
+		'foo' => 'bar',
+	]);
+	echo $template->render('test.phtml', [
+		'bar' => 'foo'
+	]);
+
+	// $dbc = new db\Connection('127.0.0.1', 'minichan_db', 'minichan_db_user', 'minichan_db_pass');
 	
-	$dbc->transaction(function (\PDO $pdo) {
-		$sth = $pdo->prepare(db\Sql::new()
-			->select(['id', 'name'])
-			->from(db\Sql::new()->literal('boards'))
-			->get()
-		);
-		$sth->execute();
-		$boards = $sth->fetch();
-		print_r($boards);
-	});
+	// $dbc->transaction(function (\PDO $pdo) {
+	// 	$sth = $pdo->prepare(db\Sql::new()
+	// 		->select(['id', 'name'])
+	// 		->from(db\Sql::new()->literal('boards'))
+	// 		->get()
+	// 	);
+	// 	$sth->execute();
+	// 	$boards = $sth->fetch();
+	// 	print_r($boards);
+	// });
 });
 
 // $router->add_route(HTTP_GET, '/test', function ($vars) {
