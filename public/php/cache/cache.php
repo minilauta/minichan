@@ -15,6 +15,7 @@ class FileCache implements Cache
 {
 	private string $filename;
 	private array $data;
+
 	public function __construct(string $id)
 	{
 		$this->filename = sys_get_temp_dir() . '/minichan.FileCache[' . $id . '].tmp';

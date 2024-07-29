@@ -12,7 +12,8 @@ require __DIR__ . '/bootstrap.php';
 require __ROOT__ . '/php/http/router.php';
 require __ROOT__ . '/php/html/renderer.php';
 require __ROOT__ . '/php/cache/cache.php';
-require __ROOT__ . '/php/db/db.php';
+require __ROOT__ . '/php/db/connection.php';
+require __ROOT__ . '/php/db/sql.php';
 
 $cache = new cache\FileCache('main');
 $router = new http\Router();
@@ -26,13 +27,24 @@ $router = new http\Router();
 // });
 
 $router->add_route(HTTP_GET, '/', function ($vars) {
-	$foobar = 'different scope';
 	$template = new html\Renderer(__ROOT__ . '/templates', [
 		'foo' => 'bar',
 	]);
 	echo $template->render('test.phtml', [
 		'bar' => 'foo'
 	]);
+
+	$sql1 = db\Sql::new()
+		->insert('boards', ['name', 'desc', 'nsfw']);
+	$sql2 = db\Sql::new()
+		->select(['id', 'name', 'desc', 'nsfw'])
+		->from(db\Sql::lit('boards'))
+		->where(db\Sql::new()
+			->gt('timestamp', time() - 1000)
+	);
+	
+	echo $sql1->str() . "<br>";
+	echo $sql2->str() . "<br>";
 
 	// $dbc = new db\Connection('127.0.0.1', 'minichan_db', 'minichan_db_user', 'minichan_db_pass');
 	
