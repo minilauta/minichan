@@ -78,6 +78,6 @@ class FileCache implements Cache
 
 	private function save_to_disk(): bool
 	{
-		return file_put_contents($this->filename, json_encode($this->data)) !== false;
+		return file_put_contents($this->filename, json_encode($this->data), LOCK_EX) !== false;
 	}
 }

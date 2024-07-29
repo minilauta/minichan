@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mariadb:10.6
+    restart: always
+    networks:
+      - app
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - '127.0.0.1:3306:3306'
+    environment:
+      MYSQL_CHARSET: 'utf8'
+      MYSQL_COLLATION: 'utf8mb4_unicode_ci'
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: unless-stopped
+    networks:
+      - app
+    ports:
+      - 127.0.0.1:9090:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${DB_ROOT_PASS}
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  db:

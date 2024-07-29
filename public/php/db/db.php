@@ -15,19 +15,16 @@ class Connection
     ]);
   }
 
-  public function transaction(callable $handler): bool
+  public function transaction(callable $handler): void
   {
-    $success = false;
-
     try {
       $this->begin();
       call_user_func($handler, $this->pdo);
-      $success = $this->commit();
+      $this->commit();
     } catch (\Exception $e) {
       $this->rollback();
+      throw $e;
     }
-
-    return $success;
   }
 
   private function begin(): bool
@@ -46,7 +43,6 @@ class Connection
   }
 }
 
-// TODO: just a quick sketch for now...
 class Sql
 {
   private string $raw;
