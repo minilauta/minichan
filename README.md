@@ -1,5 +1,12 @@
 # minichan
 
-Feature-rich imageboard engine with a minimalistic design.
+Modular imageboard engine with a minimalistic design.
 
 WORK IN PROGRESS
+
+## structure
+
+- modules
+  - dependencies
+- plugins
+  - dependencies

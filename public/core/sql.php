@@ -1,6 +1,6 @@
 <?php
 
-namespace minichan\db;
+namespace minichan\core;
 
 class Sql
 {

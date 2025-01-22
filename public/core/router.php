@@ -1,6 +1,6 @@
 <?php
 
-namespace minichan\http;
+namespace minichan\core;
 
 define('HTTP_GET', 'GET');
 define('HTTP_POST', 'POST');

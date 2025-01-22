@@ -1,8 +1,8 @@
 <?php
 
-namespace minichan\html;
+namespace minichan\core;
 
-class Renderer
+class HtmlRenderer
 {
     private string $dir;
     private array $vars;

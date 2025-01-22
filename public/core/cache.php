@@ -1,6 +1,6 @@
 <?php
 
-namespace minichan\cache;
+namespace minichan\core;
 
 define('CACHE_FILE_FLUSH_INTERVAL', 300);
 

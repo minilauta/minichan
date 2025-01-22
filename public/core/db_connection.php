@@ -1,8 +1,8 @@
 <?php
 
-namespace minichan\db;
+namespace minichan\core;
 
-class Connection
+class DbConnection
 {
 	private \PDO $pdo;
 
