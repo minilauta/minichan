@@ -19,12 +19,22 @@ class BoardModule implements core\Module
 
 	}
 
-	public function register(core\Router &$router): void
+	public function register_routes(core\Router &$router): void
 	{
 		$router->add_route(HTTP_GET, '/board', function ($vars) {
 			$renderer = new core\HtmlRenderer(__DIR__ . '/templates');
 			echo $renderer->render('foobar.phtml', ['foo' => 'bar', 'bar' => 'foo']);
 		});
+	}
+
+	public function get_name(): string
+	{
+		return 'board';
+	}
+
+	public function get_dependencies(): array
+	{
+		return [];
 	}
 }
 

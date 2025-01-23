@@ -19,12 +19,22 @@ class ManageModule implements core\Module
 
 	}
 
-	public function register(core\Router &$router): void
+	public function register_routes(core\Router &$router): void
 	{
 		$router->add_route(HTTP_GET, '/manage', function ($vars) {
 			$renderer = new core\HtmlRenderer(__DIR__ . '/templates');
 			echo $renderer->render('manage.phtml');
 		});
+	}
+
+	public function get_name(): string
+	{
+		return 'manage';
+	}
+
+	public function get_dependencies(): array
+	{
+		return ['board'];
 	}
 }
 

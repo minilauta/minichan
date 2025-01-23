@@ -4,5 +4,7 @@ namespace minichan\core;
 
 interface Plugin
 {
-	public function register(Router &$router): void;
+	public function register(): void;
+	public function get_name(): string;
+	public function dependencies(): array;
 }
