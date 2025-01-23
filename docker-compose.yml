@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:10.6
+    image: mariadb:11.7
     restart: always
     networks:
       - app
@@ -18,7 +18,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest
-    restart: unless-stopped
+    restart: always
     networks:
       - app
     ports:
