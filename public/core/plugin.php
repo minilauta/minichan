@@ -6,5 +6,5 @@ interface Plugin
 {
 	public function register(): void;
 	public function get_name(): string;
-	public function dependencies(): array;
+	public function get_dependencies(): array;
 }

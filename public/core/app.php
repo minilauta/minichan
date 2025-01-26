@@ -40,9 +40,9 @@ class App
 
 	public function process_request(string $req_method, string $req_uri)
 	{
-		$match = $this->router->match_route($req_method, $req_uri);
-		if ($match != null) {
-			$match->exec();
-		}
+		$this->router->match_route($req_method, $req_uri);
+		// echo "<pre>";
+		// print_r($this->router->routes);
+		// echo "</pre>";
 	}
 }

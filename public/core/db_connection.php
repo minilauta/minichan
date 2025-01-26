@@ -2,6 +2,8 @@
 
 namespace minichan\core;
 
+use Closure;
+
 class DbConnection
 {
 	private \PDO $pdo;
@@ -20,7 +22,7 @@ class DbConnection
 		return $this->pdo;
 	}
 
-	public function transaction(callable $handler): void
+	public function transaction(Closure $handler): void
 	{
 		try {
 			$this->begin();

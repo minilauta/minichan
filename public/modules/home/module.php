@@ -8,7 +8,7 @@ use minichan\core;
 require_once __ROOT__ . '/core/module.php';
 require_once __ROOT__ . '/core/html_renderer.php';
 
-class ManageModule implements core\Module
+class HomeModule implements core\Module
 {
 	private core\HtmlRenderer $renderer;
 
@@ -29,15 +29,15 @@ class ManageModule implements core\Module
 
 	public function register_routes(core\Router &$router): void
 	{
-		$router->add_route(HTTP_GET, '/manage', function ($vars) {
-			echo $this->renderer->render('manage.phtml');
+		$router->add_route(HTTP_GET, '/', function ($vars) {
+			echo $this->renderer->render('home.phtml');
 		});
 	}
 
 	public function get_name(): string
 	{
-		return 'manage';
+		return 'home';
 	}
 }
 
-return new ManageModule();
+return new HomeModule();
