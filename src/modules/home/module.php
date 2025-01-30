@@ -6,9 +6,9 @@ use Closure;
 use minichan\core;
 
 require_once __ROOT__ . '/core/module.php';
-require_once __ROOT__ . '/core/html_renderer.php';
+require_once __ROOT__ . '/core/renderer.php';
 
-class BoardModule implements core\Module
+class HomeModule implements core\Module
 {
 	private core\HtmlRenderer $renderer;
 
@@ -29,15 +29,15 @@ class BoardModule implements core\Module
 
 	public function register_routes(core\Router &$router): void
 	{
-		$router->add_route(HTTP_GET, '/:board_id', function ($vars) {
-			echo $this->renderer->render('board.phtml');
+		$router->add_route(HTTP_GET, '/', function ($vars) {
+			echo $this->renderer->render('home.phtml');
 		});
 	}
 
 	public function get_name(): string
 	{
-		return 'board';
+		return 'home';
 	}
 }
 
-return new BoardModule();
+return new HomeModule();

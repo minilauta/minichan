@@ -2,7 +2,12 @@
 
 namespace minichan\core;
 
-class HtmlRenderer
+interface Renderer
+{
+    public function render(string $filename, array $vars = []): bool|string;
+}
+
+class HtmlRenderer implements Renderer
 {
     private string $dir;
     private array $vars;

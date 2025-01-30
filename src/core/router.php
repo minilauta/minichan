@@ -70,6 +70,9 @@ class Router
 			throw new Exception('not found', 404);
 		}
 
+		$uri = strlen($uri) > 1 ? rtrim($uri, '/') : $uri;
+		$uri = strtolower($uri);
+
 		foreach ($this->routes[$method] as $uri_pattern => $route) {
 			$matches = [];
 			if (preg_match("#^{$uri_pattern}$#", $uri, $matches)) {

@@ -2,7 +2,7 @@
 
 namespace minichan;
 
-require __DIR__ . '/bootstrap.php';
+define('__ROOT__', __DIR__ . '/../src');
 
 require __ROOT__ . '/core/app.php';
 
