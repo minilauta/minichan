@@ -1,0 +1,6 @@
+version: 1
+script: |
+  CREATE TABLE test (
+    col1 int,
+    col2 varchar(256)
+  );
