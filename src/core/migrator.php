@@ -29,6 +29,7 @@ class Migrator
 			throw new Exception('DB_MIGRATION_DIR not found');
 		}
 
+		$this->migrations = [];
 		foreach ($files as $file) {
 			$this->migrations[] = new DbMigration(basename($file));
 		}
